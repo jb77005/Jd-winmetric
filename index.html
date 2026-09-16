@@ -1,115 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>JD WinMetric | Football Predictions</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#0b1220;color:#fff}
-header{background:linear-gradient(135deg,#111c33,#162b4d);padding:22px 18px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:24px;font-weight:800}.logo span{color:#35d07f}
-nav a{color:#dbe5f5;text-decoration:none;margin-left:18px;font-size:14px}
-.hero{padding:55px 20px;text-align:center;background:linear-gradient(180deg,#162b4d,#0b1220)}
-.hero h1{font-size:38px;margin:10px 0}
-.hero h1 span{color:#35d07f}
-.hero p{color:#aebbd0;max-width:600px;margin:auto;line-height:1.6}
-.btn{display:inline-block;margin-top:25px;background:#35d07f;color:#07120c;padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:bold}
-.container{max-width:950px;margin:auto;padding:25px 18px}
-.title{display:flex;justify-content:space-between;align-items:center}
-.title h2{font-size:24px}
-.badge{background:#183a2a;color:#52e092;padding:7px 12px;border-radius:20px;font-size:12px}
-.card{background:#121d30;border:1px solid #22314a;border-radius:14px;padding:20px;margin:15px 0}
-.match{display:flex;justify-content:space-between;align-items:center;gap:15px}
-.teams{font-size:17px;font-weight:bold}
-.vs{color:#7f8da3;font-size:12px;margin:6px 0}
-.pick{color:#35d07f;font-size:18px;font-weight:bold}
-.prob{color:#b5c1d2;font-size:13px;margin-top:8px}
-footer{text-align:center;padding:30px 15px;color:#78869b;border-top:1px solid #1d2a3e;margin-top:30px}
-@media(max-width:600px){
-header{display:block;text-align:center}
-nav{margin-top:14px}nav a{margin:0 8px}
-.hero h1{font-size:30px}
-.match{display:block}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JD WinMetric</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #bbb;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .admin-box,
+    .matches-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .match-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 15px;
+      background: #fafafa;
+    }
+
+    .teams {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .league {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .prediction {
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .probability {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .analysis {
+      margin-top: 10px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .delete-btn {
+      margin-top: 12px;
+      background: #b00020;
+      font-size: 14px;
+    }
+
+    .empty {
+      color: #777;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-<div class="logo">⚽ JD <span>WinMetric</span></div>
-<nav>
-<a href="#">Home</a>
-<a href="#predictions">Predictions</a>
-<a href="#about">About</a>
-</nav>
-</header>
+  <header>
+    <h1>JD WinMetric</h1>
+    <p>Football Match Analysis & Predictions</p>
+  </header>
 
-<section class="hero">
-<h1>Football <span>Predictions</span></h1>
-<p>Smart football analysis, match statistics and probability-based predictions in one place.</p>
-<a class="btn" href="#predictions">View Predictions</a>
-</section>
+  <div class="container">
 
-<section class="container" id="predictions">
-<div class="title">
-<h2>Today's Picks</h2>
-<div class="badge">● UPDATED</div>
-</div>
-
-<div class="card">
-<div class="match">
-<div>
-<div class="teams">Arsenal vs Chelsea</div>
-<div class="vs">Premier League</div>
-</div>
-<div>
-<div class="pick">Over 2.5 Goals</div>
-<div class="prob">Probability: 68%</div>
-</div>
-</div>
-</div>
-
-<div class="card">
-<div class="match">
-<div>
-<div class="teams">Barcelona vs Sevilla</div>
-<div class="vs">La Liga</div>
-</div>
-<div>
-<div class="pick">Barcelona Win</div>
-<div class="prob">Probability: 72%</div>
-</div>
-</div>
-</div>
-
-<div class="card">
-<div class="match">
-<div>
-<div class="teams">Milan vs Roma</div>
-<div class="vs">Serie A</div>
-</div>
-<div>
-<div class="pick">Both Teams To Score</div>
-<div class="prob">Probability: 65%</div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="container" id="about">
-<div class="card">
-<h2>About JD WinMetric</h2>
-<p style="color:#aebbd0;line-height:1.6">
-JD WinMetric provides football statistics, match analysis and probability-based predictions.
-Predictions are analytical estimates, not guaranteed results.
-</p>
-</div>
-</section>
-
-<footer>
-© 2026 JD WinMetric · Football Analytics
-</footer>
-
-</body>
-</html>
+    <!-- ADD MATCH -->
+    <div class="admin
